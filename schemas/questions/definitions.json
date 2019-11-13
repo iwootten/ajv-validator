@@ -1,0 +1,35 @@
+{
+  "$id": "https://eq.ons.gov.uk/questions/definitions.json",
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "questions": {
+    "type": "array",
+    "minItems": 1,
+    "items": {
+      "$ref": "#/question"
+    }
+  },
+  "question": {
+    "oneOf": [{
+        "$ref": "types/general.json#/question"
+      },
+      {
+        "$ref": "types/calculated.json#/question"
+      },
+      {
+        "$ref": "types/date_range.json#/question"
+      },
+      {
+        "$ref": "types/mutually_exclusive.json#/question"
+      }
+    ]
+  },
+  "question_guidance": {
+    "description": "Question guidance",
+    "type": "object",
+    "properties": {
+      "contents": {
+        "$ref": "../common_definitions.json#/contents"
+      }
+    }
+  }
+}

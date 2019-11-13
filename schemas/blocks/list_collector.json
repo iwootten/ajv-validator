@@ -1,0 +1,108 @@
+{
+  "$id": "https://eq.ons.gov.uk/blocks/list_collector.json",
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "answer_reference": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "$ref": "../common_definitions.json#/$id",
+        "description": "The id of an answer to reference"
+      },
+      "value": {
+        "type": [
+          "string",
+          "integer"
+        ],
+        "description": "The value of the answer which should be matched"
+      }
+    },
+    "required": ["id", "value"],
+    "additionalProperties": false
+  },
+  "summary": {
+    "type": "object",
+    "properties":{
+      "item_title": {
+          "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
+      },
+      "add_link_text": {
+        "type": "string"
+      },
+      "empty_list_text": {
+        "type": "string"
+      },
+      "title": {
+        "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+        "item_title", "title"
+    ]
+  },
+  "block": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "$ref": "../common_definitions.json#/$id"
+      },
+      "type": {
+        "type": "string",
+        "enum": ["ListCollector"]
+      },
+      "for_list": {
+        "type": "string"
+      },
+      "add_answer": {
+        "$ref": "list_collector.json#/answer_reference"
+      },
+      "remove_answer": {
+        "$ref": "list_collector.json#/answer_reference"
+      },
+      "question": {
+        "$ref": "../questions/definitions.json#/question"
+      },
+      "question_variants": {
+        "$ref": "definitions.json#/question_variants"
+      },
+      "add_block": {
+        "$ref": "question.json#/block"
+      },
+      "edit_block": {
+        "$ref": "question.json#/block"
+      },
+      "remove_block": {
+        "$ref": "question.json#/block"
+      },
+      "summary": {
+        "$ref": "list_collector.json#/summary"
+      },
+      "show_on_section_summary": {
+        "type": "boolean"
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "id",
+      "type",
+      "for_list",
+      "add_answer",
+      "remove_answer",
+      "add_block",
+      "edit_block",
+      "remove_block"
+    ],
+    "oneOf": [
+      {
+        "required": [
+          "question"
+        ]
+      },
+      {
+        "required": [
+          "question_variants"
+        ]
+      }
+    ]
+  }
+}

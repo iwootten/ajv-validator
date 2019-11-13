@@ -1,0 +1,30 @@
+{
+  "$id": "https://eq.ons.gov.uk/string_interpolation/transforms/format_possessive.json",
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "format_possessive": {
+    "type": "object",
+    "properties": {
+      "transform": {
+        "type": "string",
+        "enum": ["format_possessive"]
+      },
+      "arguments": {
+        "type": "object",
+        "properties": {
+          "string_to_format": {
+            "$ref": "../definitions.json#/value_sources" 
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "string_to_format"
+        ]    
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "transform",
+      "arguments"
+    ]
+  }
+}

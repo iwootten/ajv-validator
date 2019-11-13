@@ -1,0 +1,62 @@
+{
+  "$id": "https://eq.ons.gov.uk/when_rule/compare_to_multiple_values.json",
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "type": "object",
+  "description": "Comparison against multiple values",
+  "properties": {
+    "id": {
+      "$ref": "definitions.json#/answer_identifier"
+    },
+    "meta": {
+      "$ref": "definitions.json#/metadata_identifier"
+    },
+    "condition": {
+      "enum": [
+        "contains all",
+        "contains any",
+        "equals any",
+        "not equals any"
+      ]
+    },
+    "values": {
+      "$ref": "definitions.json#/comparison_values"
+    },
+    "comparison": {
+      "$ref": "definitions.json#/answer_comparison_object"
+    }
+  },
+  "required": [
+    "condition"
+  ],
+  "allOf": [
+    {
+      "oneOf": [
+        {
+          "required": [
+            "id"
+          ]
+        },
+        {
+          "required": [
+            "meta"
+          ]
+        }
+      ]
+    },
+    {
+      "oneOf": [
+        {
+          "required": [
+            "values"
+          ]
+        },
+        {
+          "required": [
+            "comparison"
+          ]
+        }
+      ]
+    }
+  ],
+  "additionalProperties": false
+}

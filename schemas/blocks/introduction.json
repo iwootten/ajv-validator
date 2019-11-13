@@ -1,0 +1,89 @@
+{
+  "$id": "https://eq.ons.gov.uk/blocks/introduction.json",
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "block": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "$ref": "../common_definitions.json#/$id"
+      },
+      "title": {
+        "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
+      },
+      "type": {
+        "type": "string",
+        "enum": ["Introduction"]
+      },
+      "primary_content": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "../common_definitions.json#/$id"
+            },
+            "title": {
+              "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
+            },
+            "contents": {
+              "$ref": "../common_definitions.json#/contents"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "preview_content": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "../common_definitions.json#/$id"
+          },
+          "title": {
+            "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "../common_definitions.json#/$id"
+                },
+                "question": {
+                  "$ref": "../string_interpolation/definitions.json#/string_with_placeholders"
+                },
+                "contents": {
+                  "$ref": "../common_definitions.json#/contents"
+                }
+              }
+            }
+          },
+          "contents": {
+            "$ref": "../common_definitions.json#/contents"
+          }
+        },
+        "additionalProperties": false
+      },
+      "secondary_content": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "../common_definitions.json#/$id"
+            },
+            "contents": {
+              "$ref": "../common_definitions.json#/contents"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "id",
+      "type"
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "$id": "https://eq.ons.gov.uk/string_interpolation/transforms/calculate_years_difference.json",
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "calculate_years_difference": {
+    "type": "object",
+    "properties": {
+      "transform": {
+        "type": "string",
+        "enum": ["calculate_years_difference"]
+      },
+      "arguments": {
+        "type": "object",
+        "properties": {
+          "first_date": {
+            "oneOf": [
+              {
+                "$ref": "../definitions.json#/value_sources" 
+              },
+              {
+                "$ref": "../../common_definitions.json#/date_value"
+              }
+            ]
+          },
+          "second_date": {
+            "oneOf": [
+              {
+                "$ref": "../definitions.json#/value_sources" 
+              },
+              {
+                "$ref": "../../common_definitions.json#/date_value"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "first_date",
+          "second_date"
+        ]    
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "transform",
+      "arguments"
+    ]
+  }
+}

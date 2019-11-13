@@ -1,0 +1,42 @@
+{
+  "$id": "https://eq.ons.gov.uk/blocks/confirmation.json",
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "block": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "$ref": "../common_definitions.json#/$id"
+      },
+      "number": {
+        "type": "string"
+      },
+      "type": {
+        "type": "string",
+        "enum": ["Confirmation"]
+      },
+      "content": {
+        "$ref": "definitions.json#/content"
+      },
+      "content_variants": {
+        "$ref": "definitions.json#/content_variants"
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "id",
+      "type"
+    ],
+    "oneOf": [
+      {
+        "required": [
+          "content"
+        ]
+      },
+      {
+        "required": [
+          "content_variants"
+        ]
+      }
+    ]
+  }
+}
