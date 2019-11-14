@@ -1,19 +1,27 @@
 let Ajv = require('ajv');
-let schema = require('./schemas/questionnaire_v1.json');
+const axios = require('axios');
+const fs = require('fs');
+const glob = require('glob');
 
 let questionnaire = require('./test_checkbox.json')
 
-let ajv = new Ajv({meta: false, extendRefs: true, unknownFormats: 'ignore', verbose: true});
+let ajv = new Ajv({
+  meta: false, 
+  extendRefs: true, 
+  unknownFormats: 'ignore', 
+  allErrors: true, 
+  verbose: true,
+  schemaId: 'auto'
+});
+ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-04.json'));
 
-var metaSchema = require('./node_modules/ajv/lib/refs/json-schema-draft-04.json');
-ajv.addMetaSchema(metaSchema);
-ajv._opts.defaultMeta = metaSchema.id;
+glob("./schemas/**/*.json", function (er, schemas) {
+  schemas.forEach((currentSchema) => {
+    let data = fs.readFileSync(currentSchema);
+    ajv.addSchema(JSON.parse(data));
+  });
 
-let valid = ajv.validate(schema, questionnaire);
-
-if (valid) {
-    console.log('User data is valid');
-} else {
-    console.log('User data is INVALID!');
-    console.log(ajv.errors);
-}
+  var validate = ajv.compile(require('./schemas/questionnaire_v1.json'));
+  let valid = validate(questionnaire);
+  console.log(valid);
+});
