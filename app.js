@@ -13,10 +13,11 @@ let ajv = new Ajv({
   verbose: true,
   schemaId: 'auto'
 });
-ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-04.json'));
+ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-06.json'));
 
 glob("./schemas/**/*.json", function (er, schemas) {
   schemas.forEach((currentSchema) => {
+    console.log(currentSchema);
     let data = fs.readFileSync(currentSchema);
     ajv.addSchema(JSON.parse(data));
   });
