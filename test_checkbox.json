@@ -32,7 +32,7 @@
                 {
                     "blocks": [
                         {
-                            "type": "Question",
+                            "type": "cheese",
                             "id": "mandatory-checkbox",
                             "question": {
                                 "answers": [

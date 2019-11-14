@@ -5,7 +5,7 @@
     "type": "object",
     "properties": {
       "id": {
-        "$ref": "../../common_definitions.json#/$id"
+        "$ref": "../../common_definitions.json#/idx"
       },
       "title": {
         "$ref": "../../string_interpolation/definitions.json#/string_with_placeholders"

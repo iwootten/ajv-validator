@@ -5,7 +5,7 @@
     "type": "object",
     "properties": {
       "id": {
-        "$ref": "../common_definitions.json#/$id"
+        "$ref": "../common_definitions.json#/idx"
       },
       "type": {
         "type": "string",
@@ -35,7 +35,7 @@
             "type": "array",
             "minItems": 2,
             "items": {
-              "$ref": "../common_definitions.json#/$id"
+              "$ref": "../common_definitions.json#/idx"
             },
             "description": "The id of the answers from which to do calculated_type to"
           },

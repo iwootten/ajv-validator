@@ -13,6 +13,9 @@
     "metadata"
   ],
   "properties": {
+    "messages": {
+      "$ref": "https://eq.ons.gov.uk/common_definitions.json#/messages"
+    },
     "eq_id": {
       "type": "string",
       "description": "Used in combination with the form_type to uniquely identify a questionnaire."
@@ -135,9 +138,6 @@
         }
       }
     },
-    "messages": {
-      "$ref": "https://eq.ons.gov.uk/common_definitions.json#/messages"
-    },
     "hub": {
       "type": "object",
       "properties": {
@@ -165,7 +165,7 @@
         "type": "object",
         "properties": {
           "id": {
-            "$ref": "https://eq.ons.gov.uk/common_definitions.json#/$id"
+            "$ref": "https://eq.ons.gov.uk/common_definitions.json#/idx"
           },
           "title": {
             "type": "string",
@@ -197,7 +197,7 @@
               "type": "object",
               "properties": {
                 "id": {
-                  "$ref": "https://eq.ons.gov.uk/common_definitions.json#/$id"
+                  "$ref": "https://eq.ons.gov.uk/common_definitions.json#/idx"
                 },
                 "title": {
                   "type": "string"

@@ -5,7 +5,7 @@
     "type": "object",
     "properties": {
       "id": {
-        "$ref": "../../common_definitions.json#/$id"
+        "$ref": "../../common_definitions.json#/idx"
       },
       "title": {
         "$ref": "../../string_interpolation/definitions.json#/string_with_placeholders"
@@ -17,7 +17,7 @@
         "$ref": "../../string_interpolation/definitions.json#/string_with_placeholders"
       },
       "definitions": {
-        "$ref": "../../common_definitions.json#/definitions"
+        "$ref": "../../common_definitions.json#/question_definitions"
       },
       "guidance": {
         "$ref": "../definitions.json#/question_guidance"
@@ -57,7 +57,7 @@
               "type": "array",
               "minItems": 2,
               "items": {
-                "$ref": "../../common_definitions.json#/$id"
+                "$ref": "../../common_definitions.json#/idx"
               },
               "description": "The id of the answers from which to do calculated_type to"
             },

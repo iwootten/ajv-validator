@@ -6,32 +6,30 @@
     "description": "A question code used by downstream systems to identify answers.",
     "pattern": "^[0-9a-z]+$"
   },
-  "definitions": {
-    "definitions": {
-      "description": "Allows customisation of question definition title and description.",
-      "type": "array",
-      "minItems": 1,
-      "items": {
-        "type": "object",
-        "required": [
-          "title",
-          "contents"
-        ],
-        "properties": {
-          "title": {
-            "type": "string"
-          },
-          "contents": {
-            "$ref": "common_definitions.json#/contents"
-          },
-          "id": {
-            "type": "string",
-            "description": "Used to identify groups, blocks, questions and answers.",
-            "pattern": "^[a-z0-9][a-z0-9\\-]*[a-z0-9]$"
-          }
+  "idx": {
+    "type": "string",
+    "description": "Used to identify groups, blocks, questions and answers.",
+    "pattern": "^[a-z0-9][a-z0-9\\-]*[a-z0-9]$"
+  },
+  "question_definitions": {
+    "description": "Allows customisation of question definition title and description.",
+    "type": "array",
+    "minItems": 1,
+    "items": {
+      "type": "object",
+      "required": [
+        "title",
+        "contents"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
         },
-        "additionalProperties": false
-      }
+        "contents": {
+          "$ref": "common_definitions.json#/contents"
+        }
+      },
+      "additionalProperties": false
     }
   },
   "contents": {
