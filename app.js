@@ -2,8 +2,8 @@ let Ajv = require('ajv');
 const axios = require('axios');
 const fs = require('fs');
 const glob = require('glob');
-
-let questionnaire = require('./test_checkbox.json')
+var express = require("express");
+var app = express();
 
 let ajv = new Ajv({
   meta: false, 
@@ -15,14 +15,32 @@ let ajv = new Ajv({
 });
 ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-06.json'));
 
+app.use(express.json({
+  'limit': '2Mb'
+}));
+
+app.listen(5001, () => {
+  console.log("Server running on port 5001");
+});
+
+app.get("/status", (req, res, next) => {
+    return res.sendStatus(200);
+});
+
 glob("./schemas/**/*.json", function (er, schemas) {
   schemas.forEach((currentSchema) => {
-    console.log(currentSchema);
     let data = fs.readFileSync(currentSchema);
     ajv.addSchema(JSON.parse(data));
   });
 
   var validate = ajv.compile(require('./schemas/questionnaire_v1.json'));
-  let valid = validate(questionnaire);
-  console.log(valid);
+
+  app.post("/validate", (req, res, next) => {
+    let valid = validate(req.body);
+    console.log("Validating questionnaire: " + req.body['title']);
+    if (valid != true) {
+      return res.json({'success': false})
+    }
+    return res.json({})
+  });
 });
