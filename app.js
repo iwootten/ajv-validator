@@ -1,9 +1,9 @@
-let Ajv = require('ajv');
+const Ajv = require('ajv');
 const axios = require('axios');
 const fs = require('fs');
 const glob = require('glob');
-var express = require("express");
-var app = express();
+const express = require("express");
+const app = express();
 
 let ajv = new Ajv({
   meta: false, 
@@ -13,7 +13,7 @@ let ajv = new Ajv({
   verbose: true,
   schemaId: 'auto'
 });
-ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-06.json'));
+ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-07.json'));
 
 app.use(express.json({
   'limit': '2Mb'
@@ -38,8 +38,8 @@ glob("./schemas/**/*.json", function (er, schemas) {
   app.post("/validate", (req, res, next) => {
     let valid = validate(req.body);
     console.log("Validating questionnaire: " + req.body['title']);
-    if (valid != true) {
-      return res.json({'success': false})
+    if (!valid) {
+      return res.json({'success': false, 'errors': validate.errors})
     }
     return res.json({})
   });
