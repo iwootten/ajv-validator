@@ -10,7 +10,6 @@ let ajv = new Ajv({
   extendRefs: true, 
   unknownFormats: 'ignore', 
   allErrors: true, 
-  verbose: true,
   schemaId: 'auto'
 });
 ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-07.json'));
