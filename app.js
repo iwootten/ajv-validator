@@ -9,7 +9,7 @@ let ajv = new Ajv({
   meta: false, 
   extendRefs: true, 
   unknownFormats: 'ignore', 
-  allErrors: true, 
+  allErrors: false, 
   schemaId: 'auto'
 });
 ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-07.json'));
@@ -38,7 +38,9 @@ glob("./schemas/**/*.json", function (er, schemas) {
     let valid = validate(req.body);
     console.log("Validating questionnaire: " + req.body['title']);
     if (!valid) {
-      return res.json({'success': false, 'errors': validate.errors})
+      return res.json({'success': false, 'errors': validate.errors.sort((a, b) => {
+        return b.dataPath.length - a.dataPath.length;
+      })})
     }
     return res.json({})
   });
