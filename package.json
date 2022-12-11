@@ -2,7 +2,7 @@
   "dependencies": {
     "ajv": "^6.12.3",
     "axios": "^0.21.2",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "glob": "^7.1.6"
   }
 }
